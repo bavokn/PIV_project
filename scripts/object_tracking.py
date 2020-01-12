@@ -55,8 +55,7 @@ def MotionDetection(inVideo, firstFrame, lastFrame):
             th, dframe = cv2.threshold(dframe, 35, 255, cv2.THRESH_BINARY)
             # Morphological Operation
             dilated = cv2.dilate(dframe, None, iterations=4)
-            eroded = cv2.erode(dilated, None, iterations=1)
-            opening = cv2.morphologyEx(eroded, cv2.MORPH_OPEN, kernel)
+            opening = cv2.morphologyEx(dilated, cv2.MORPH_OPEN, kernel)
             closing = cv2.morphologyEx(opening, cv2.MORPH_CLOSE, kernel)
 
             (cnts, _) = cv2.findContours(closing, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
