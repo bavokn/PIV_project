@@ -75,6 +75,7 @@ def MotionDetection(inVideo, firstFrame, lastFrame):
             # obtain the corresponding bounding rectangle of our detected contour
             (x, y, w, h) = cv2.boundingRect(contour)
 
+
             offset = 30
             if x < offset:
                 x = offset
@@ -98,11 +99,16 @@ def MotionDetection(inVideo, firstFrame, lastFrame):
 
             for i in range(len(pick_cars)):
                 cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
-                cv2.putText(frame, "C" + str(i + 1), (x, y), cv2.FONT_HERSHEY_COMPLEX, 0.5, (255, 0, 0))
+                cv2.putText(frame, "C" + str(i + 1), (x, y), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0, 0, 0))
 
             for i in range(len(pick_people)):
                 cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
-                cv2.putText(frame, "P" + str(i + 1), (x, y), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0, 255, 0))
+                cv2.putText(frame, "P" + str(i + 1), (x, y), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0, 0, 0))
+
+            # this sadly does not work that's why its commented out
+            # if not rects_cars.__contains__(contour) and not rects_people.__contains__(contour):
+            #     cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 2)
+            #     cv2.putText(frame, "O", (x, y), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0, 0, 0))
 
         out.write(frame)
         count += 1
