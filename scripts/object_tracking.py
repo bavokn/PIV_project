@@ -47,9 +47,9 @@ def MotionDetection(inVideo, firstFrame, lastFrame):
             break
         if count != lastFrame:
             if count % 3 == 0:
-                if len(frames) == 5:
+                if len(frames) == 3:
                     np.median(frames, axis=0).astype(dtype=np.uint8)
-                elif len(frames) > 5:
+                elif len(frames) > 3:
                     frames = [frame]
                     median = np.median(frames, axis=0).astype(dtype=np.uint8)
             else:
