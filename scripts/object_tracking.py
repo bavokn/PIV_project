@@ -75,7 +75,6 @@ def MotionDetection(inVideo, firstFrame, lastFrame):
             # obtain the corresponding bounding rectangle of our detected contour
             (x, y, w, h) = cv2.boundingRect(contour)
 
-
             offset = 30
             if x < offset:
                 x = offset
